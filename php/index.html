@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GET & POST</title>
+</head>
+
+<body>
+  <form method="GET" action="get.php">
+    <input type="checkbox" name="get_checkbox[]" value="a">
+    <input type="checkbox" name="get_checkbox[]" value="b">
+    <input type="checkbox" name="get_checkbox[]" value="c">
+    <input type="submit" value="GET / get_checkbox[]">
+  </form>
+  <hr>
+  <form method="POST" action="post.php">
+    <input type="checkbox" name="post_checkbox[]" value="a">
+    <input type="checkbox" name="post_checkbox[]" value="b">
+    <input type="checkbox" name="post_checkbox[]" value="c">
+    <input type="submit" value="POST / post_checkbox[]">
+  </form>
+  <hr>
+  <form method="GET" action="get.php">
+    <input type="checkbox" name="get_checkbox" value="a">
+    <input type="checkbox" name="get_checkbox" value="b">
+    <input type="checkbox" name="get_checkbox" value="c">
+    <input type="submit" value="GET / get_checkbox">
+  </form>
+  <hr>
+  <form method="POST" action="post.php">
+    <input type="checkbox" name="post_checkbox" value="a">
+    <input type="checkbox" name="post_checkbox" value="b">
+    <input type="checkbox" name="post_checkbox" value="c">
+    <input type="submit" value="POST / post_checkbox">
+  </form>
+</body>
+
+</html>
