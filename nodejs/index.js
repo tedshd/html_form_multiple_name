@@ -5,7 +5,7 @@ const querystring = require('querystring');
 
 var server = http.createServer(function (req, res) {
   const thisUrl = new URL(req.url, 'http://' + req.headers.host);
-  const query = new URLSearchParams(thisUrl.search);
+  const query = new URLSearchParams(thisUrl.search).toString();
   switch (thisUrl.pathname) {
     case '/':
       fs.readFile('index.html', function (err, data) {
@@ -17,10 +17,9 @@ var server = http.createServer(function (req, res) {
     case '/get':
       res.writeHead(200, { "Content-Type": "application/json" });
       var json = JSON.stringify({
-        'get_checkbox': query.getAll('get_checkbox'),
-        'get_checkbox[]': query.getAll('get_checkbox[]'),
-        'get_text': query.get('get_text'),
-        'get_text_getall': query.getAll('get_text'),
+        'get_checkbox': querystring.parse(query)['get_checkbox'],
+        'get_checkbox[]': querystring.parse(query)['get_checkbox[]'],
+        'get_text': querystring.parse(query)['get_text'],
       });
       res.end(json);
       break;
