@@ -3,7 +3,9 @@ package main
 import (
     "fmt"
     "net/http"
-    "encoding/json"
+	"encoding/json"
+	"reflect"
+	"strings"
 )
 
 func getHandler(w http.ResponseWriter, r *http.Request) {
@@ -12,7 +14,10 @@ func getHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(q)
     fmt.Println("get_checkbox[]: ", q["get_checkbox[]"])
     fmt.Println("get_checkbox: ", q["get_checkbox"])
-    fmt.Println("get_text: ", q["get_text"])
+	fmt.Println("get_text: ", q["get_text"])
+	s := reflect.TypeOf(q["get_text"]).Kind()
+	fmt.Printf("%T: %s\n", s, s)
+	fmt.Println(strings.Join(q["get_text"], ""))
 
     jsonData, err := json.Marshal(q)
     if err != nil {
@@ -27,7 +32,10 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
         r.ParseForm()
         fmt.Println("post_checkbox[]", r.Form["post_checkbox[]"])
         fmt.Println("post_checkbox", r.Form["post_checkbox"])
-        fmt.Println("post_text", r.Form["post_text"])
+		fmt.Println("post_text", r.Form["post_text"])
+		s := reflect.TypeOf(r.Form["post_text"]).Kind()
+		fmt.Printf("%T: %s\n", s, s)
+		fmt.Println(strings.Join(r.Form["post_text"], ""))
 
         jsonData, err := json.Marshal(r.Form)
         if err != nil {
